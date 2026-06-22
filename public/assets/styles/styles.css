@@ -1,0 +1,520 @@
+/* VARIABLES CON ENFOQUE MONOCROMÁTICO Y ZEN */
+:root {
+    --color-bg: #FFFFFF;
+    --color-text-main: #111111;
+    --color-text-muted: #666666;
+    --color-border: #E5E5E5;
+    --color-bg-alt: #FAFAFA;
+
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+}
+
+/* RESET COMPLETO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* CONTENEDORES Y ESTRUCTURAS DE ESPACIADO */
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.section-alt {
+    background-color: var(--color-bg-alt);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 80px 0 100px 0;
+}
+
+.border-none-zen {
+    border-bottom: none !important;
+}
+
+/* GRILLAS DEL SISTEMA */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 64px;
+    align-items: center;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+}
+
+.text-center { text-align: center; }
+.mb-64 { margin-bottom: 64px; }
+
+/* NAVBAR COMPONENT REDISEÑADO A FONDO NEGRO (image_9e7241.png) */
+.navbar {
+    background-color: #000000; /* Fondo negro sólido oficial */
+    border-bottom: 1px solid #1A1A1A;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vitalis-logo-img {
+    height: 36px; /* Ajustado proporcionalmente al isotipo de tu imagen */
+    width: auto;
+}
+
+.brand-name {
+    font-family: var(--font-serif); /* Modificado a Serif elegante según la captura */
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    font-family: var(--font-serif); /* Modificado a Serif de tu diseño de Figma */
+}
+
+.nav-links a {
+    color: #FFFFFF; /* Textos blancos puros */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 24px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #CCCCCC;
+}
+
+/* BOTÓN ESPECÍFICO DEL NAVBAR (Píldora blanca) */
+.btn-navbar-white {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 28px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    background-color: #ECECF0; /* Color grisáceo/blanco suave de la captura */
+    color: #111111;
+    border-radius: 20px; /* Completamente redondeado en los extremos */
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn-navbar-white:hover {
+    background-color: #FFFFFF;
+}
+
+/* BOTONES GENERALES */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-text-main);
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #333333;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-text-main);
+    border-color: var(--color-text-main);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* HERO SEGMENT */
+.hero {
+    padding: 140px 0;
+    text-align: center;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 56px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+}
+
+.text-mute {
+    color: var(--color-text-muted);
+}
+
+.hero-subtitle {
+    max-width: 640px;
+    margin: 0 auto 48px auto;
+    font-size: 18px;
+    color: var(--color-text-muted);
+    font-weight: 400;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* COMPONENTES GENERALES DE DISEÑO ZEN */
+.font-zen-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 28px;
+    background-color: #FFFFFF;
+    display: inline-block;
+    padding: 8px 32px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+}
+
+.image-placeholder-frame {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+}
+
+.problem-illustration {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card-white-pill {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.01);
+}
+
+.card-pill-title {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--color-text-main);
+    margin-bottom: 16px;
+}
+
+.card-pill-text {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: #333333;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.card-pill-text:last-child {
+    margin-bottom: 0;
+}
+
+/* SISTEMA TRIPLE PILAR */
+.pilar-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pilar-header-tag {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-text-main);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.005);
+}
+
+.text-center-zen {
+    text-align: left;
+    font-size: 14px;
+    color: #444444;
+}
+
+/* SECCIÓN: SEGMENTOS OBJETIVO ASIMÉTRICOS */
+.flex-column-zen {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mb-80-zen {
+    margin-bottom: 80px;
+}
+
+.grid-2-segments {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.segment-info-pill {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.segment-header-tag {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 10px 32px;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-text-main);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.005);
+}
+
+.text-justify-zen {
+    text-align: left;
+    font-size: 14.5px;
+    color: #222222;
+    line-height: 1.8;
+}
+
+.image-segment-frame {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+}
+
+.segment-illustration {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* APARTADO ¿POR QUÉ VITALIS? */
+.grid-2-why {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+}
+
+.card-white-pill-why {
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.005);
+}
+
+.text-center-why {
+    text-align: center;
+    font-size: 14.5px;
+    color: #111111;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+.why-actions-container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 20px;
+    padding-bottom: 60px;
+}
+
+.btn-dark-block {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 18px;
+    padding: 24px 40px;
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+    cursor: pointer;
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-dark-block:hover {
+    background-color: #222222;
+}
+
+.text-message-block {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    cursor: default;
+    background-color: #000000;
+}
+
+.text-message-block:hover {
+    background-color: #000000;
+}
+
+/* STICKY FOOTER ESTRUCTURADO */
+.footer {
+    background-color: #030213;
+    border-top: 1px solid #1A1A1A;
+    padding: 32px 0;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.footer-grid-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.social-icon {
+    color: #FFFFFF;
+    display: inline-flex;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.social-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.social-icon:hover {
+    transform: scale(1.05);
+    color: #ECECF0;
+}
+
+.footer-nav-links,
+.footer-legal-links {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-serif);
+}
+
+.footer-nav-links a,
+.footer-legal-links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.footer-nav-links a:hover,
+.footer-legal-links a:hover {
+    color: #CCCCCC;
+}
+
+.nav-divider {
+    color: #666666;
+    margin: 0 12px;
+    font-size: 12px;
+    user-select: none;
+}
+
+main {
+    padding-bottom: 160px;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 900px) {
+    .footer {
+        position: static;
+    }
+    .footer-grid-layout {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    .grid-2-why {
+        grid-template-columns: 1fr;
+    }
+    .why-actions-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-dark-block {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-2-segments {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .segment-info-pill {
+        align-items: center;
+    }
+}
