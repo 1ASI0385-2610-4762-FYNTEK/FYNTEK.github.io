@@ -512,7 +512,7 @@ main {
     padding-bottom: 160px;
 }
 
-/* RESPONSIVE */
+ /* CONFIGURACIÓN RESPONSIVA DE ESTRUCTURA, ESPACIADO Y ELEMENTOS */
 @media (max-width: 900px) {
     .footer {
         position: static;
