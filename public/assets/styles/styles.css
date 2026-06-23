@@ -342,7 +342,7 @@ body {
     object-fit: cover;
 }
 
-/* APARTADO ¿POR QUÉ VITALIS? */
+ /* APARTADO ¿POR QUÉ VITALIS? CON PROPUESTA DE VALOR Y BENEFICIOS PRINCIPALES */
 .grid-2-why {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
