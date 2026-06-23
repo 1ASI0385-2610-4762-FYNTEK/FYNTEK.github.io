@@ -257,7 +257,7 @@ body {
     margin-bottom: 0;
 }
 
-/* SISTEMA TRIPLE PILAR */
+ /* SISTEMA DE TRIPLE PILAR CON ESTRUCTURA MODULAR Y DISTRIBUCIÓN EQUILIBRADA */
 .pilar-column {
     display: flex;
     flex-direction: column;
