@@ -1,3 +1,5 @@
+let currentRegisterRole = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Ecosistema Zen de VITALIS: Micro-interacciones inicializadas.");
 
@@ -5,9 +7,85 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
 });
 
+/**
+ * Abre el panel modal para iniciar el registro seleccionando el rol (Wireframe 10)
+ */
+function openRegisterRoleSelection() {
+    const overlay = document.getElementById('register-role-overlay');
+    if (overlay) {
+        overlay.classList.remove('hidden-zen');
+    }
+}
+
+/**
+ * Cierra el panel de selección de rol de registro y limpia estados
+ */
+function closeRegisterRoleSelection() {
+    const overlay = document.getElementById('register-role-overlay');
+    if (overlay) {
+        overlay.classList.add('hidden-zen');
+        clearRegisterRoleState();
+    }
+}
+
+/**
+ * Gestiona la selección del tipo de rol en el formulario de inicio de registro
+ */
+function selectRegisterRole(role) {
+    currentRegisterRole = role;
+
+    // Resetea clases visuales activas
+    document.getElementById('card-role-student').classList.remove('active-register-role');
+    document.getElementById('card-role-intern').classList.remove('active-register-role');
+
+    // Asigna el estado activo a la tarjeta seleccionada
+    if (role === 'estudiante') {
+        document.getElementById('card-role-student').classList.add('active-register-role');
+    } else if (role === 'practicante') {
+        document.getElementById('card-role-intern').classList.add('active-register-role');
+    }
+
+    // Habilita el botón de confirmación de registro
+    const btnSubmit = document.getElementById('btn-submit-register-role');
+    if (btnSubmit) {
+        btnSubmit.removeAttribute('disabled');
+        btnSubmit.classList.remove('btn-role-disabled');
+    }
+}
+
+/**
+ * Limpia las variables de estado al cerrar el flujo de registro
+ */
+function clearRegisterRoleState() {
+    currentRegisterRole = null;
+    document.getElementById('card-role-student').classList.remove('active-register-role');
+    document.getElementById('card-role-intern').classList.remove('active-register-role');
+
+    const btnSubmit = document.getElementById('btn-submit-register-role');
+    if (btnSubmit) {
+        btnSubmit.setAttribute('disabled', 'true');
+        btnSubmit.classList.add('btn-role-disabled');
+    }
+}
+
+/**
+ * Procesa la confirmación e inicia el formulario de registro del respectivo segmento (Wireframe 11)
+ */
+function submitRoleRegistration() {
+    if (!currentRegisterRole) return;
+
+    const targetContextText = currentRegisterRole === 'estudiante'
+        ? "Estudiante Universitario (Formulario de Carga Académica y Exámenes)"
+        : "Practicante Pre-Profesional (Formulario de Horario Laboral y Burnout)";
+
+    setTimeout(() => {
+        alert(`Iniciando flujo de registro...\n\nHas elegido el perfil: ${targetContextText}.\nRedireccionando de manera segura.`);
+        closeRegisterRoleSelection();
+    }, 200);
+}
+
 function initButtonRipples() {
-    // Añadido el selector del nuevo botón outline
-    const buttons = document.querySelectorAll('.btn, .btn-navbar-white, .btn-dark-block, .btn-navbar-outline');
+    const buttons = document.querySelectorAll('.btn, .btn-navbar-white, .btn-dark-block, .role-selection-card, .btn-navbar-outline');
 
     buttons.forEach(button => {
         button.addEventListener('click', function (e) {
@@ -70,10 +148,10 @@ function initTrial() {
 }
 
 /**
- * Controla la apertura simulada del módulo de login
+ * Conecta el flujo del Navbar redireccionando al entorno de Login Habitual
  */
 function openLogin() {
     setTimeout(() => {
-        alert("Abriendo módulo Zen de Inicio de Sesión...");
-    }, 200);
+        window.location.href = 'public/assets/HTML/login.html';
+    }, 150);
 }
