@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<!-- NAVBAR PRINCIPAL -->
 <header class="navbar">
     <div class="navbar-container">
         <div class="logo-area">
@@ -22,13 +23,15 @@
             <a href="#">About Us</a>
         </nav>
         <div class="navbar-actions">
+            <!-- Botón conectado para redirigir al Login -->
             <button class="btn-navbar-outline" onclick="openLogin()">Iniciar Sesión</button>
-            <a href="https://www.figma.com/design/HsW6FXogFB04hEEp2wHM1f/App-Vitalis" target="_blank" class="btn btn-navbar-white">Empezar ahora</a>
+            <button class="btn-navbar-white" onclick="openLogin()">Empezar ahora</button>
         </div>
     </div>
 </header>
 
 <main>
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="container hero-container">
             <h1 class="hero-title">Recupera tu paz mental,<br><span class="text-mute">potencia tu rendimiento.</span></h1>
@@ -36,7 +39,7 @@
                 VITALIS es el ecosistema digital diseñado para reducir drásticamente la carga cognitiva de estudiantes y practicantes peruanos. Organiza tu día, monitorea tus niveles de estrés y evita el burnout.
             </p>
             <div class="hero-actions">
-                <button class="btn btn-primary" onclick="initTrial()">Empezar prueba gratuita</button>
+                <button class="btn btn-primary" onclick="openLogin()">Empezar prueba gratuita</button>
                 <a href="#problem" class="btn btn-secondary">Conocer los pilares</a>
             </div>
         </div>
@@ -159,7 +162,7 @@
             </div>
 
             <div class="why-actions-container">
-                <button class="btn btn-dark-block" onclick="initTrial()">
+                <button class="btn btn-dark-block" onclick="openLogin()">
                     Empieza tu prueba <br> gratuita hoy
                 </button>
                 <div class="btn btn-dark-block text-message-block">
