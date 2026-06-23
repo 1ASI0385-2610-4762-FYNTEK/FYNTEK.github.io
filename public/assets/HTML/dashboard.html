@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/dashboard-styles.css">
+    <link rel="stylesheet" href="../styles/dashboard-style.css">
+
 </head>
 <body>
 
@@ -22,12 +23,11 @@
 </header>
 
 <main class="dash-container">
-    <div class="dash-grid-top">
 
+    <div class="dash-grid-top">
         <div class="dash-card">
             <h3 class="dash-card-title">¿Cómo te sientes hoy?</h3>
             <p class="dash-card-subtitle">HU-01: Registro diario para identificar cambios en tu bienestar.</p>
-
             <div class="mood-selector-container">
                 <button class="mood-btn" onclick="registerMood(':D', 'Excelente')">:D</button>
                 <button class="mood-btn" onclick="registerMood(':)', 'Bueno')">:)</button>
@@ -40,8 +40,7 @@
 
         <div class="dash-card">
             <h3 class="dash-card-title">Evolución de Estrés</h3>
-            <p class="dash-card-subtitle">HU-02: Gráfico semanal monocromático de tus picos de presión.</p>
-
+            <p class="dash-card-subtitle">HU-02: Gráfico semanal de tus picos de presión.</p>
             <div class="stress-chart-mock">
                 <div class="chart-bar-container"><div class="chart-bar" style="height: 40px;"></div><span class="day-label">L</span></div>
                 <div class="chart-bar-container"><div class="chart-bar" style="height: 75px;"></div><span class="day-label">M</span></div>
@@ -52,6 +51,41 @@
                 <div class="chart-bar-container"><div class="chart-bar" style="height: 15px;"></div><span class="day-label">D</span></div>
             </div>
         </div>
+    </div>
+
+    <div class="dash-grid-top mt-32">
+
+        <div class="dash-card">
+            <h3 class="dash-card-title">Tareas Pendientes</h3>
+            <p class="dash-card-subtitle">HU-14: Añade tus responsabilidades diarias en un entorno limpio.</p>
+
+            <form onsubmit="addTask(event)" class="inline-form-zen">
+                <input type="text" id="task-input" required placeholder="Ej. Estudiar para la PC2 de Arquitectura" class="form-input task-input-flex">
+                <button type="submit" class="btn btn-primary btn-add-task">Añadir</button>
+            </form>
+
+            <ul id="task-list-zen" class="task-list-container">
+                <li class="task-item-zen"><input type="checkbox" onchange="toggleTask(this)"> <span>Revisar métricas de UX/UI en Miro</span></li>
+                <li class="task-item-zen"><input type="checkbox" onchange="toggleTask(this)"> <span>Avanzar documentación del Sprint 2</span></li>
+            </ul>
+        </div>
+
+        <div class="dash-card">
+            <h3 class="dash-card-title">Asistente de Hábitos AI</h3>
+            <p class="dash-card-subtitle">HU-31: Sugerencias automatizadas basadas en tu estado actual.</p>
+
+            <div class="ai-recommendation-box">
+                <div class="ai-icon-pulse">◈</div>
+                <div class="ai-text-content">
+                    <h5 id="ai-suggestion-title">Analizando carga cognitiva...</h5>
+                    <p id="ai-suggestion-body">Cargando recomendación Zen personalizada para tu jornada de hoy.</p>
+                </div>
+            </div>
+            <div class="ai-feedback-actions">
+                <button class="btn-feedback-zen" onclick="feedbackAI(true)">✓ Útil</button>
+                <button class="btn-feedback-zen" onclick="feedbackAI(false)">✕ No útil</button>
+            </div>
+        </div>
 
     </div>
 
@@ -59,12 +93,22 @@
         <div class="calendar-header-flex">
             <div>
                 <h3 class="dash-card-title">Calendario Integrado Zen</h3>
-                <p class="dash-card-subtitle">HU-13: Gestión unificada de tus bloques de estudio, trabajo y descanso.</p>
+                <p class="dash-card-subtitle">HU-13 y HU-11: Planifica tus bloques de estudio para mejorar tu productividad académica.</p>
             </div>
-            <button class="btn btn-primary" onclick="addCustomEvent()">+ Sincronizar Entregable</button>
+
+            <button class="btn btn-primary" onclick="openStudyBlockForm()">+ Crear Bloque de Estudio</button>
         </div>
 
-        <div class="calendar-timeline">
+        <div id="study-block-form" class="study-form-container hidden-element">
+            <div class="form-group-row">
+                <input type="text" id="study-subject" placeholder="Curso (Ej. Estadística)" class="form-input">
+                <input type="text" id="study-time" placeholder="Horario (Ej. 04:00 PM - 06:00 PM)" class="form-input">
+                <button class="btn btn-primary" onclick="saveStudyBlock()">Guardar Bloque</button>
+                <button class="btn-logout btn-cancel-zen" onclick="openStudyBlockForm()">Cancelar</button>
+            </div>
+        </div>
+
+        <div class="calendar-timeline" id="calendar-timeline-events">
             <div class="time-block">
                 <span class="time-label">08:00 AM - 11:00 AM</span>
                 <div class="event-pill event-academic">🎓 Clases de Ingeniería de Software (UPC)</div>
@@ -77,16 +121,23 @@
                 <span class="time-label">06:30 PM - 08:30 PM</span>
                 <div class="event-pill event-study">📝 Desglose de Entregables Asistido por IA</div>
             </div>
-            <div class="time-block">
-                <span class="time-label">09:00 PM - 09:30 PM</span>
-                <div class="event-pill event-rest">🧘 Pausa Activa de Respiración y Relajación</div>
-            </div>
         </div>
     </div>
 </main>
 
 <script>
-    // Verificación de datos de sesión simulada
+    // Configuración de recomendaciones AI dinámicas basadas en el rol (HU-31)
+    const aiRecommendations = {
+        estudiante: {
+            title: "Optimización de Enfoque Académico",
+            body: "Detectamos semanas de alta carga. Te sugerimos estructurar sesiones de estudio usando bloques Pomodoro cerrados de 50 minutos con descansos de 10 minutos de desconexión visual total."
+        },
+        practicante: {
+            title: "Mitigación del Sedentarismo y Presión",
+            body: "Has acumulado más de 2 horas continuas en entornos de oficina. Sigue la guía de estiramientos ergonómicos para liberar la tensión acumulada en el cuello y la espalda."
+        }
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
         const username = sessionStorage.getItem('vitalis_username') || 'Usuario Temporal';
         const role = sessionStorage.getItem('vitalis_role') || 'estudiante';
@@ -97,32 +148,111 @@
         if(role === 'estudiante') {
             roleBadge.innerText = 'Perfil Universitario';
             roleBadge.className = 'badge-student';
-            // Los estudiantes puros ocultan el bloque fijo de oficina
-            document.getElementById('conditional-work-block').style.opacity = '0.4';
+            document.getElementById('conditional-work-block').style.opacity = '0.3';
         } else {
             roleBadge.innerText = 'Perfil Practicante Pre-Profesional';
             roleBadge.className = 'badge-intern';
         }
+
+        // Inyección dinámica de la sugerencia personalizada de hábitos (HU-31)
+        const recommendation = aiRecommendations[role] || aiRecommendations.estudiante;
+        document.getElementById('ai-suggestion-title').innerText = recommendation.title;
+        document.getElementById('ai-suggestion-body').innerText = recommendation.body;
     });
+
+    // Lógica interactiva para HU-14: Registrar tareas pendientes
+    function addTask(e) {
+        e.preventDefault();
+        const input = document.getElementById('task-input');
+        if (!input.value.trim()) return;
+
+        const list = document.getElementById('task-list-zen');
+        const li = document.createElement('li');
+        li.className = 'task-item-zen';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.addEventListener('change', function () { toggleTask(this); });
+
+        const span = document.createElement('span');
+        span.textContent = input.value.trim();
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        list.appendChild(li);
+        input.value = '';
+    }
+
+    function toggleTask(checkbox) {
+        const text = checkbox.nextElementSibling;
+        if (checkbox.checked) {
+            text.style.textDecoration = 'line-through';
+            text.style.opacity = '0.5';
+        } else {
+            text.style.textDecoration = 'none';
+            text.style.opacity = '1';
+        }
+    }
+
+    // Lógica interactiva para HU-31: Feedback de la IA
+    function feedbackAI(isUseful) {
+        alert(isUseful
+            ? "¡Gracias! El algoritmo priorizará este tipo de recomendaciones en tu bitácora Zen."
+            : "Entendido. Ajustaremos los parámetros de IA para descartar este tema en tus próximas jornadas."
+        );
+    }
+
+    // Lógica interactiva para HU-11: Crear horarios de estudio
+    function openStudyBlockForm() {
+        const form = document.getElementById('study-block-form');
+        form.classList.toggle('hidden-element');
+    }
+
+    function saveStudyBlock() {
+        const subject = document.getElementById('study-subject').value;
+        const time = document.getElementById('study-time').value;
+
+        if (!subject || !time) {
+            alert("Por favor completa los campos del horario de estudio.");
+            return;
+        }
+
+        const timeline = document.getElementById('calendar-timeline-events');
+        const block = document.createElement('div');
+        block.className = 'time-block';
+
+        const timeLabel = document.createElement('span');
+        timeLabel.className = 'time-label';
+        timeLabel.textContent = time;
+
+        const pill = document.createElement('div');
+        pill.className = 'event-pill event-study';
+        pill.textContent = `🎓 Repaso Académico: ${subject}`;
+
+        block.appendChild(timeLabel);
+        block.appendChild(pill);
+
+        timeline.appendChild(block);
+
+        // Limpiar y cerrar formulario
+        document.getElementById('study-subject').value = '';
+        document.getElementById('study-time').value = '';
+        openStudyBlockForm();
+    }
 
     function registerMood(emoji, label) {
         const feedback = document.getElementById('mood-feedback-message');
         feedback.innerText = `Estado [${label}] registrado en tu historial diario con éxito.`;
         feedback.classList.remove('hidden-element');
 
-        // Modificación dinámica del gráfico de estrés basado en el ánimo registrado (HU-02)
         const stressBar = document.getElementById('live-stress-bar');
-        if(emoji === ':(' || emoji === '>:') {
+        if(emoji === ':(' || emoji === '>:(') {
             stressBar.style.height = '85px';
             stressBar.style.backgroundColor = '#666666';
         } else {
             stressBar.style.height = '30px';
             stressBar.style.backgroundColor = '#111111';
         }
-    }
-
-    function addCustomEvent() {
-        alert("HU-13: Calendario unificado sincronizado de forma correcta. Se ha añadido la fecha límite al planificador.");
     }
 
     function logout() {
