@@ -64,9 +64,9 @@ body {
 .text-center { text-align: center; }
 .mb-64 { margin-bottom: 64px; }
 
-/* NAVBAR COMPONENT REDISEÑADO A FONDO NEGRO (image_9e7241.png) */
+/* NAVBAR COMPONENT A FONDO NEGRO (image_9e7241.png) */
 .navbar {
-    background-color: #000000; /* Fondo negro sólido oficial */
+    background-color: #000000;
     border-bottom: 1px solid #1A1A1A;
     position: sticky;
     top: 0;
@@ -87,12 +87,12 @@ body {
 }
 
 .vitalis-logo-img {
-    height: 36px; /* Ajustado proporcionalmente al isotipo de tu imagen */
+    height: 36px;
     width: auto;
 }
 
 .brand-name {
-    font-family: var(--font-serif); /* Modificado a Serif elegante según la captura */
+    font-family: var(--font-serif);
     color: #FFFFFF;
     font-weight: 400;
     font-size: 22px;
@@ -100,11 +100,11 @@ body {
 }
 
 .nav-links {
-    font-family: var(--font-serif); /* Modificado a Serif de tu diseño de Figma */
+    font-family: var(--font-serif);
 }
 
 .nav-links a {
-    color: #FFFFFF; /* Textos blancos puros */
+    color: #FFFFFF;
     text-decoration: none;
     font-size: 18px;
     font-weight: 400;
@@ -116,7 +116,7 @@ body {
     color: #CCCCCC;
 }
 
-/* BOTÓN ESPECÍFICO DEL NAVBAR (Píldora blanca) */
+/* BOTÓN DEL NAVBAR (Píldora blanca redondeada) */
 .btn-navbar-white {
     display: inline-flex;
     align-items: center;
@@ -125,9 +125,9 @@ body {
     font-family: var(--font-sans);
     font-size: 13px;
     font-weight: 500;
-    background-color: #ECECF0; /* Color grisáceo/blanco suave de la captura */
+    background-color: #ECECF0;
     color: #111111;
-    border-radius: 20px; /* Completamente redondeado en los extremos */
+    border-radius: 20px;
     text-decoration: none;
     transition: background-color 0.2s ease;
 }
@@ -203,7 +203,7 @@ body {
     gap: 16px;
 }
 
-/* COMPONENTES GENERALES DE DISEÑO ZEN */
+/* COMPONENTES GENERALES DE DISEÑO ZEN (Píldoras y marcos) */
 .font-zen-title {
     font-family: var(--font-serif);
     font-weight: 400;
@@ -411,7 +411,7 @@ body {
     background-color: #000000;
 }
 
-/* STICKY FOOTER ESTRUCTURADO */
+/* STICKY FOOTER EN LÍNEA PERSISTENTE (image_9e142b.png) */
 .footer {
     background-color: #030213;
     border-top: 1px solid #1A1A1A;
@@ -482,11 +482,37 @@ body {
     user-select: none;
 }
 
+/* ANIMACIONES COMPLEMENTARIAS JAVASCRIPT */
+.btn, .btn-navbar-white, .btn-dark-block {
+    position: relative;
+    overflow: hidden;
+}
+
+.zen-ripple {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleAnimation 0.6s linear;
+    pointer-events: none;
+}
+
+.btn-navbar-white .zen-ripple {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@keyframes rippleAnimation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
 main {
     padding-bottom: 160px;
 }
 
-/* MEDIA QUERIES */
+/* RESPONSIVE */
 @media (max-width: 900px) {
     .footer {
         position: static;
