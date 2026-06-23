@@ -25,7 +25,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* CONTENEDORES Y ESTRUCTURAS DE ESPACIADO */
+ /* ESTRUCTURA PRINCIPAL Y GESTIÓN DE ESPACIADOS */
 .container {
     max-width: 1140px;
     margin: 0 auto;
