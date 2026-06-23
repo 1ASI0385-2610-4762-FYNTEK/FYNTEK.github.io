@@ -482,7 +482,7 @@ body {
     user-select: none;
 }
 
-/* ANIMACIONES COMPLEMENTARIAS JAVASCRIPT */
+ /* ANIMACIONES COMPLEMENTARIAS JAVASCRIPT PARA INTERACCIONES DINÁMICAS */
 .btn, .btn-navbar-white, .btn-dark-block {
     position: relative;
     overflow: hidden;
