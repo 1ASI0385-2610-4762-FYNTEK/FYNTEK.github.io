@@ -283,7 +283,7 @@ body {
     color: #444444;
 }
 
-/* SECCIÓN: SEGMENTOS OBJETIVO ASIMÉTRICOS */
+ /* SECCIÓN DE SEGMENTOS OBJETIVO ASIMÉTRICOS CON DISTRIBUCIÓN VISUAL DINÁMICA */
 .flex-column-zen {
     display: flex;
     flex-direction: column;
