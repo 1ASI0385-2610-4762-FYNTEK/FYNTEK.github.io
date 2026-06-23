@@ -1,9 +1,69 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Ecosistema Zen de VITALIS inicializado de forma correcta.");
+    console.log("Ecosistema Zen de VITALIS: Micro-interacciones inicializadas.");
+
+    initButtonRipples();
+    initSmoothScroll();
 });
+
+function initButtonRipples() {
+    const buttons = document.querySelectorAll('.btn, .btn-navbar-white, .btn-dark-block');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            const existingRipple = this.querySelector('.zen-ripple');
+            if (existingRipple) {
+                existingRipple.remove();
+            }
+
+            const ripple = document.createElement('span');
+            ripple.classList.add('zen-ripple');
+
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+            ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+
+            this.appendChild(ripple);
+
+            ripple.addEventListener('animationend', () => {
+                ripple.remove();
+            });
+        });
+    });
+}
+
+
+function initSmoothScroll() {
+    const navLinks = document.querySelectorAll('.nav-links a, .footer-nav-links a, .hero-actions a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+
+            if (targetId && targetId.startsWith('#') && targetId !== '#') {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    const navbarOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+}
 
 
 function initTrial() {
-    alert("Te damos la bienvenida a Vitalis. Reduciendo tu carga cognitiva en 3, 2, 1...");
+    setTimeout(() => {
+        alert("Te damos la bienvenida a Vitalis. Reduciendo tu carga cognitiva...");
+    }, 300);
 }
