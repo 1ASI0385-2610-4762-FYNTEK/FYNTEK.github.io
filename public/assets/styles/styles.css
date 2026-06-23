@@ -1,4 +1,4 @@
- /* VARIABLES DE DISEÑO CON ENFOQUE MONOCROMÁTICO Y ESTÉTICA ZEN */
+/* VARIABLES DE DISEÑO CON ENFOQUE MONOCROMÁTICO Y ESTÉTICA ZEN */
 :root {
     --color-bg: #FFFFFF;
     --color-text-main: #111111;
@@ -25,7 +25,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
- /* ESTRUCTURA PRINCIPAL Y GESTIÓN DE ESPACIADOS */
+/* ESTRUCTURA PRINCIPAL Y GESTIÓN DE ESPACIADOS */
 .container {
     max-width: 1140px;
     margin: 0 auto;
@@ -116,7 +116,37 @@ body {
     color: #CCCCCC;
 }
 
- /* BOTÓN PRINCIPAL DEL NAVBAR CON DISEÑO TIPO PÍLDORA REDONDEADA */
+/* Contenedor de acciones en Flex con espacio entre botones */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* BOTÓN DE INICIAR SESIÓN (Borde Blanco Tipo Píldora) */
+.btn-navbar-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-navbar-outline:hover {
+    background-color: #FFFFFF;
+    color: #111111;
+}
+
+/* BOTÓN PRINCIPAL DEL NAVBAR CON DISEÑO TIPO PÍLDORA REDONDEADA */
 .btn-navbar-white {
     display: inline-flex;
     align-items: center;
@@ -136,7 +166,7 @@ body {
     background-color: #FFFFFF;
 }
 
- /* BOTONES GENERALES DE INTERACCIÓN Y ACCIONES PRINCIPALES */
+/* BOTONES GENERALES DE INTERACCIÓN Y ACCIONES PRINCIPALES */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -170,7 +200,7 @@ body {
     background-color: rgba(0, 0, 0, 0.04);
 }
 
- /* SECCIÓN HERO PRINCIPAL CON CONTENIDO DESTACADO Y JERARQUÍA VISUAL */
+/* SECCIÓN HERO PRINCIPAL CON CONTENIDO DESTACADO Y JERARQUÍA VISUAL */
 .hero {
     padding: 140px 0;
     text-align: center;
@@ -257,7 +287,7 @@ body {
     margin-bottom: 0;
 }
 
- /* SISTEMA DE TRIPLE PILAR CON ESTRUCTURA MODULAR Y DISTRIBUCIÓN EQUILIBRADA */
+/* SISTEMA DE TRIPLE PILAR CON ESTRUCTURA MODULAR Y DISTRIBUCIÓN EQUILIBRADA */
 .pilar-column {
     display: flex;
     flex-direction: column;
@@ -283,7 +313,7 @@ body {
     color: #444444;
 }
 
- /* SECCIÓN DE SEGMENTOS OBJETIVO ASIMÉTRICOS CON DISTRIBUCIÓN VISUAL DINÁMICA */
+/* SECCIÓN DE SEGMENTOS OBJETIVO ASIMÉTRICOS CON DISTRIBUCIÓN VISUAL DINÁMICA */
 .flex-column-zen {
     display: flex;
     flex-direction: column;
@@ -342,7 +372,7 @@ body {
     object-fit: cover;
 }
 
- /* APARTADO ¿POR QUÉ VITALIS? CON PROPUESTA DE VALOR Y BENEFICIOS PRINCIPALES */
+/* APARTADO ¿POR QUÉ VITALIS? CON PROPUESTA DE VALOR Y BENEFICIOS PRINCIPALES */
 .grid-2-why {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -411,7 +441,7 @@ body {
     background-color: #000000;
 }
 
- /* STICKY FOOTER PERSISTENTE EN LÍNEA CON ESTRUCTURA FIJA Y ACCESO CONTINUO */
+/* STICKY FOOTER PERSISTENTE EN LÍNEA CON ESTRUCTURA FIJA Y ACCESO CONTINUO */
 .footer {
     background-color: #030213;
     border-top: 1px solid #1A1A1A;
@@ -482,8 +512,8 @@ body {
     user-select: none;
 }
 
- /* ANIMACIONES COMPLEMENTARIAS JAVASCRIPT PARA INTERACCIONES DINÁMICAS */
-.btn, .btn-navbar-white, .btn-dark-block {
+/* ANIMACIONES COMPLEMENTARIAS JAVASCRIPT PARA INTERACCIONES DINÁMICAS */
+.btn, .btn-navbar-white, .btn-dark-block, .btn-navbar-outline {
     position: relative;
     overflow: hidden;
 }
@@ -497,8 +527,8 @@ body {
     pointer-events: none;
 }
 
-.btn-navbar-white .zen-ripple {
-    background-color: rgba(0, 0, 0, 0.1);
+.btn-navbar-white .zen-ripple, .btn-navbar-outline .zen-ripple {
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 @keyframes rippleAnimation {
@@ -512,7 +542,7 @@ main {
     padding-bottom: 160px;
 }
 
- /* CONFIGURACIÓN RESPONSIVA DE ESTRUCTURA, ESPACIADO Y ELEMENTOS */
+/* CONFIGURACIÓN RESPONSIVA DE ESTRUCTURA, ESPACIADO Y ELEMENTOS */
 @media (max-width: 900px) {
     .footer {
         position: static;
