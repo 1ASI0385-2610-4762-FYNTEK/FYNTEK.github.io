@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initButtonRipples() {
-    const buttons = document.querySelectorAll('.btn, .btn-navbar-white, .btn-dark-block');
+    // Añadido el selector del nuevo botón outline
+    const buttons = document.querySelectorAll('.btn, .btn-navbar-white, .btn-dark-block, .btn-navbar-outline');
 
     buttons.forEach(button => {
         button.addEventListener('click', function (e) {
@@ -66,4 +67,13 @@ function initTrial() {
     setTimeout(() => {
         alert("Te damos la bienvenida a Vitalis. Reduciendo tu carga cognitiva...");
     }, 300);
+}
+
+/**
+ * Controla la apertura simulada del módulo de login
+ */
+function openLogin() {
+    setTimeout(() => {
+        alert("Abriendo módulo Zen de Inicio de Sesión...");
+    }, 200);
 }
