@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITALIS - Dashboard Zen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/dashboard-styles.css">
+</head>
+<body>
+
+<header class="dash-navbar">
+    <div class="dash-nav-container">
+        <span class="dash-brand">VITALIS // <span id="user-role-badge">Cargando...</span></span>
+        <div class="user-profile-zone">
+            <span id="welcome-user-text">Bienvenido</span>
+            <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+        </div>
+    </div>
+</header>
+
+<main class="dash-container">
+    <div class="dash-grid-top">
+
+        <div class="dash-card">
+            <h3 class="dash-card-title">¿Cómo te sientes hoy?</h3>
+            <p class="dash-card-subtitle">HU-01: Registro diario para identificar cambios en tu bienestar.</p>
+
+            <div class="mood-selector-container">
+                <button class="mood-btn" onclick="registerMood(':D', 'Excelente')">:D</button>
+                <button class="mood-btn" onclick="registerMood(':)', 'Bueno')">:)</button>
+                <button class="mood-btn" onclick="registerMood(':|', 'Neutral')">:|</button>
+                <button class="mood-btn" onclick="registerMood(':(', 'Estresado')">: (</button>
+                <button class="mood-btn" onclick="registerMood('>:(', 'Agotado')">&gt;:(</button>
+            </div>
+            <div id="mood-feedback-message" class="feedback-msg hidden-element"></div>
+        </div>
+
+        <div class="dash-card">
+            <h3 class="dash-card-title">Evolución de Estrés</h3>
+            <p class="dash-card-subtitle">HU-02: Gráfico semanal monocromático de tus picos de presión.</p>
+
+            <div class="stress-chart-mock">
+                <div class="chart-bar-container"><div class="chart-bar" style="height: 40px;"></div><span class="day-label">L</span></div>
+                <div class="chart-bar-container"><div class="chart-bar" style="height: 75px;"></div><span class="day-label">M</span></div>
+                <div class="chart-bar-container"><div class="chart-bar" style="height: 90px;"></div><span class="day-label">M</span></div>
+                <div class="chart-bar-container"><div class="chart-bar" style="height: 50px;"></div><span class="day-label">J</span></div>
+                <div class="chart-bar-container"><div class="chart-bar" id="live-stress-bar" style="height: 20px;"></div><span class="day-label-active">V (Hoy)</span></div>
+                <div class="chart-bar-container"><div class="chart-bar" style="height: 10px;"></div><span class="day-label">S</span></div>
+                <div class="chart-bar-container"><div class="chart-bar" style="height: 15px;"></div><span class="day-label">D</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="dash-card mt-32">
+        <div class="calendar-header-flex">
+            <div>
+                <h3 class="dash-card-title">Calendario Integrado Zen</h3>
+                <p class="dash-card-subtitle">HU-13: Gestión unificada de tus bloques de estudio, trabajo y descanso.</p>
+            </div>
+            <button class="btn btn-primary" onclick="addCustomEvent()">+ Sincronizar Entregable</button>
+        </div>
+
+        <div class="calendar-timeline">
+            <div class="time-block">
+                <span class="time-label">08:00 AM - 11:00 AM</span>
+                <div class="event-pill event-academic">🎓 Clases de Ingeniería de Software (UPC)</div>
+            </div>
+            <div class="time-block" id="conditional-work-block">
+                <span class="time-label">02:00 PM - 06:00 PM</span>
+                <div class="event-pill event-work">💼 Bloque de Prácticas / Proyectos en Oficina</div>
+            </div>
+            <div class="time-block">
+                <span class="time-label">06:30 PM - 08:30 PM</span>
+                <div class="event-pill event-study">📝 Desglose de Entregables Asistido por IA</div>
+            </div>
+            <div class="time-block">
+                <span class="time-label">09:00 PM - 09:30 PM</span>
+                <div class="event-pill event-rest">🧘 Pausa Activa de Respiración y Relajación</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Verificación de datos de sesión simulada
+    document.addEventListener('DOMContentLoaded', () => {
+        const username = sessionStorage.getItem('vitalis_username') || 'Usuario Temporal';
+        const role = sessionStorage.getItem('vitalis_role') || 'estudiante';
+
+        document.getElementById('welcome-user-text').innerText = `Sesión: ${username}`;
+
+        const roleBadge = document.getElementById('user-role-badge');
+        if(role === 'estudiante') {
+            roleBadge.innerText = 'Perfil Universitario';
+            roleBadge.className = 'badge-student';
+            // Los estudiantes puros ocultan el bloque fijo de oficina
+            document.getElementById('conditional-work-block').style.opacity = '0.4';
+        } else {
+            roleBadge.innerText = 'Perfil Practicante Pre-Profesional';
+            roleBadge.className = 'badge-intern';
+        }
+    });
+
+    function registerMood(emoji, label) {
+        const feedback = document.getElementById('mood-feedback-message');
+        feedback.innerText = `Estado [${label}] registrado en tu historial diario con éxito.`;
+        feedback.classList.remove('hidden-element');
+
+        // Modificación dinámica del gráfico de estrés basado en el ánimo registrado (HU-02)
+        const stressBar = document.getElementById('live-stress-bar');
+        if(emoji === ':(' || emoji === '>:') {
+            stressBar.style.height = '85px';
+            stressBar.style.backgroundColor = '#666666';
+        } else {
+            stressBar.style.height = '30px';
+            stressBar.style.backgroundColor = '#111111';
+        }
+    }
+
+    function addCustomEvent() {
+        alert("HU-13: Calendario unificado sincronizado de forma correcta. Se ha añadido la fecha límite al planificador.");
+    }
+
+    function logout() {
+        sessionStorage.clear();
+        window.location.href = 'login.html';
+    }
+</script>
+</body>
+</html>
