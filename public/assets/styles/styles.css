@@ -116,7 +116,7 @@ body {
     color: #CCCCCC;
 }
 
-/* BOTÓN DEL NAVBAR (Píldora blanca redondeada) */
+ /* BOTÓN PRINCIPAL DEL NAVBAR CON DISEÑO TIPO PÍLDORA REDONDEADA */
 .btn-navbar-white {
     display: inline-flex;
     align-items: center;
